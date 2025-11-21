@@ -1,0 +1,260 @@
+.hero-content{
+    display: grid;
+    grid-template-columns: 25% 2% 73%;
+}
+.cardsContainer{
+   margin: 10px;
+   background-color: rgba(254, 254, 254, 0.897);
+   border-radius: 10px;
+
+}
+/* ============== */
+.cardsContainer1-header{
+    margin: 5px;
+    border-bottom: gray solid;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.MembersCard{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 10px;
+}
+
+.buttonAddNewWorker{
+    margin: 10px;
+}
+.memberCardContainer1{
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 20% 45% 20%;
+    background-color: silver;
+    border-radius: 10px;
+}
+#smallCard .descrepsion{
+    margin-top: 0;
+}
+.imgMember{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.imgMemberIn{
+    margin-left: 20px;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+}
+#imgMember2{
+    margin-left: 20px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+}
+.descrepsion{
+    margin-top: 20px;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+.buttonEdit{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: end;
+    
+}
+/* ============== */
+#cardsContainer2{
+    display: grid;
+    grid-template-columns: 38% 17% 45% ;
+    background-image: url(planTravail.jpg);
+    background-size: 100% 100%;
+    height: 900px;
+    
+}
+.divPlan1{
+    display: grid;
+    grid-template-rows: 34% 66%;
+}
+
+.divPlan3{
+   display: grid;
+   grid-template-rows: 36% 30% 34%;
+}
+.conferenceRoom{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(82, 81, 81, 0.577);
+}
+.reception{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(82, 81, 81, 0.577);
+}
+.servicesRoom-securityRoom{
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+.staffRoom-vault{
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+
+.servicesRoom{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(82, 81, 81, 0.577);
+}
+.securityRoom{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(82, 81, 81, 0.577);
+}
+.staffRoom{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(82, 81, 81, 0.577);
+}
+.vault{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(82, 81, 81, 0.577);
+}
+
+.flex{
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+input{
+    border-radius: 5px;
+}
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  height: auto ;
+  overflow: visible ;
+}
+@media only screen and (max-width: 600px) {
+.hero-content{
+display: flex;
+flex-direction: column;
+}
+#cardsContainer2{
+    display :flex;
+    flex-direction: column;
+    background-image: url();
+    background-size: 100% 100%;
+    height: 900px;
+    
+}
+.servicesRoom-securityRoom{
+    display: flex;
+    flex-direction: column;
+}
+.staffRoom-vault{
+    display: flex;
+    flex-direction: column;
+}
+.servicesRoom{
+    box-shadow: 0 0 10px;
+    border: solid gray 1px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: 0;
+}
+.securityRoom{
+    box-shadow: 0 0 10px;
+    border: solid gray 1px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(82, 81, 81, 0.577);
+}
+.staffRoom{
+    box-shadow: 0 0 10px;
+    border: solid gray 1px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(82, 81, 81, 0.577);
+}
+.vault{
+    box-shadow: 0 0 10px;
+    border: solid gray 1px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(82, 81, 81, 0.577);
+}
+.conferenceRoom{
+    box-shadow: 0 0 10px;
+    border: solid gray 1px;
+    box-shadow: 0 0 10px;
+    border: solid gray 1px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color:0;
+}
+.reception{
+    box-shadow: 0 0 10px;
+    border: solid gray 1px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color:0;
+}
+.divPlan1{
+    display: flex;
+    flex-direction: column;
+}
+
+.divPlan3{
+display: flex;
+flex-direction: column;
+}
+}

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <h3>-Workspace Staff Manager-</h3>
+            </a>
+        </div>
+    </nav>
+    <div class="hero">
+        <div class="hero-content">
+            <div id="cardsContainer1" class="cardsContainer">
+                <div class="cardsContainer1-header">
+                    <h6>Staff Members (Unassigned)</h6>
+                </div>
+                <div id="MembersCard" class="MembersCard">
+                    
+                </div>
+                <div class="buttonAddNewWorker">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                        data-bs-target="#staticBackdrop">
+                        Ajouter un member
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdropLabel">Ajouter un member</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- form -->
+                                    <form id="profileForm">
+
+                                        <label>Nom :</label><br>
+                                        <input type="text" name="nom" required>
+                                        <span id="nomAlert" class="text-danger"></span><br><br>
+                                        <label>Rôle :</label><br>
+                                        <input type="text" name="role" required>
+                                        <span id="roleAlert" class="text-danger"></span><br><br>
+                                        <label>Photo (URL) :</label><br>
+                                        <input type="url" name="photo">
+                                        <span class="text-danger"></span><br><br>
+                                        <label>Email :</label><br>
+                                        <input type="email" name="email" required>
+                                        <span id="emailAlert" class="text-danger"></span><br><br>
+                                        <label>Téléphone :</label><br>
+                                        <input type="tel" name="telephone">
+                                        <span class="text-danger"></span><br><br>
+                                        <h3>Expériences professionnelles</h3>
+                                        <div id="experiences"></div>
+
+                                        <div id="addExp" class="btn btn-success">Ajouter expérience</div>
+                                        
+                                        <br><br>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button id="AjouterMember" type="button" class="btn btn-primary">Ajouter</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="gap"></div>
+            <div id="cardsContainer2" class="cardsContainer">
+                <div class="divPlan1">
+                    <div class="conferenceRoom">
+                        <p>conferenceRoom</p>
+                        <div id="conferenceRoom" class="flex">
+                            <!-- cardsmall -->
+                            <div id="smallCard" class="memberCardContainer1">
+                                <div class="imgMember"><img id="imgMember2" class="imgMemberIn" src="memberimg.webp">
+                                </div>
+                                <div class="descrepsion">
+                                    <h6>ALEX</h6>
+                                    <small>Technicien IT</small>
+                                </div>
+                                <div class="buttonEdit">
+                                    x
+                                </div>
+                            </div>
+                            <!-- ========== -->
+                                                         <!-- cardsmall -->
+                            <div id="smallCard" class="memberCardContainer1">
+                                <div class="imgMember"><img id="imgMember2" class="imgMemberIn" src="memberimg.webp">
+                                </div>
+                                <div class="descrepsion">
+                                    <h6>ALEX</h6>
+                                    <small>Technicien IT</small>
+                                </div>
+                                <div class="buttonEdit">
+                                    x
+                                </div>
+                            </div>
+                            <!-- ========== -->
+                                                         <!-- cardsmall -->
+                            <div id="smallCard" class="memberCardContainer1">
+                                <div class="imgMember"><img id="imgMember2" class="imgMemberIn" src="memberimg.webp">
+                                </div>
+                                <div class="descrepsion">
+                                    <h6>ALEX</h6>
+                                    <small>Technicien IT</small>
+                                </div>
+                                <div class="buttonEdit">
+                                    x
+                                </div>
+                            </div>
+                            <!-- ========== -->
+                                                         <!-- cardsmall -->
+                            <div id="smallCard" class="memberCardContainer1">
+                                <div class="imgMember"><img id="imgMember2" class="imgMemberIn" src="memberimg.webp">
+                                </div>
+                                <div class="descrepsion">
+                                    <h6>ALEX</h6>
+                                    <small>Technicien IT</small>
+                                </div>
+                                <div class="buttonEdit">
+                                    x
+                                </div>
+                            </div>
+                            <!-- ========== -->
+                                                         <!-- cardsmall -->
+                            <div id="smallCard" class="memberCardContainer1">
+                                <div class="imgMember"><img id="imgMember2" class="imgMemberIn" src="memberimg.webp">
+                                </div>
+                                <div class="descrepsion">
+                                    <h6>ALEX</h6>
+                                    <small>Technicien IT</small>
+                                </div>
+                                <div class="buttonEdit">
+                                    x
+                                </div>
+                            </div>
+                            <!-- ========== -->
+                        </div>
+
+
+
+                        <!-- eeeeeeeeeeeeeeeeeeeeeeee -->
+                         <!-- Button trigger modal -->
+<button id="ajouterAuConferenceRoom" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  +
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div id="modalConfernceRoom" class="modal-body">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+                        <!-- eeeeeeeeeeeeeeeeeeeeeeee -->
+                    </div>
+                    <div id =reception class="reception">
+                        <p>reception</p>
+                        <button type="button" class="btn btn-primary">+</button>
+                    </div>
+                </div>
+                <div class="divPlan2"></div>
+                <div class="divPlan3">
+                    <div class="servicesRoom-securityRoom">
+                        <div class="servicesRoom">
+                            <p>servicesRoom</p>
+                            <button type="button" class="btn btn-primary">+</button>
+                        </div>
+                        <div class="securityRoom">
+                            <p>securityRoom</p>
+                            <button type="button" class="btn btn-primary">+</button>
+                        </div>
+                    </div>
+                    <div></div>
+                    <div class="staffRoom-vault">
+                        <div class="staffRoom">
+                            <p>staffRoom</p>
+                            <button type="button" class="btn btn-primary">+</button>
+
+                        </div>
+                        <div class="vault">
+                            <p>vault</p>
+                            <button type="button" class="btn btn-primary">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+<script src='main.js'></script>
+
+</html>
