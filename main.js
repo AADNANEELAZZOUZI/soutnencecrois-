@@ -6,7 +6,11 @@ const modalSecuretyRoom = document.getElementById("modalSecuretyRoom");
 const modalStaffRoom = document.getElementById("modalStaffRoom");
 const modalvault = document.getElementById("modalConfernceRoom");
 let conterexperience = 0;
+let contercapacitéReception = 0
 let membersX =[]
+let idMember = 1;
+let dataId ;
+let jsonMember = 0;
 document.getElementById("addExp").addEventListener('click', ajouterExperience)
 
 // =================================================
@@ -30,12 +34,14 @@ function ajouterMember() {
         alert("numero invalid")
     }
     else{
-        const newMember = { name: nom, role: role, photo: photo, email: "HFJBFVBJB@GMOAL.com", numero: "2222222222" };
+        idMember++
+        const newMember = { id:idMember, name: nom, role: role, photo: photo, email: "HFJBFVBJB@GMOAL.com", numero: "2222222222" };
         membersX.push(newMember);
         afficherMemberUnassigned(newMember);
-                    
-                    afficherCardMOdal(newMember,modalConferenceRoom);
-                
+        afficherCardMOdal(newMember,modalConferenceRoom);
+        if(newMember.role == "réceptionniste" || newMember.role == "Manager"){
+            afficherCardMOdal(newMember,modalReception);
+        }
     }
     
 }
@@ -43,14 +49,13 @@ async function loadDataJson() {
     try{
         const response = await fetch("data.json")
         const members = await response.json();
-        members.forEach(member => {
+            members.forEach(member => {
             afficherMemberUnassigned(member);
             membersX.push(member);
         });
+        
             membersX.forEach(member => {
-                if(member.role == "réceptionniste"){
                     afficherCardMOdal(member,modalConferenceRoom);
-                }
                 });
             
     }catch(error){
@@ -84,70 +89,51 @@ function ajouterExperience() {
     document.getElementById("experiences").appendChild(div);
 }
 
-function afficherMemberUnassigned(member) {
-    const cardLeft = document.getElementById("MembersCard")
-    const memberCardContainer1 = document.createElement("div")
-    memberCardContainer1.className = "memberCardContainer1"
-    memberCardContainer1.innerHTML =
-        `
-    <div class="imgMember"><img class="imgMemberIn" src="${member.photo}"></div>
-                        <div class="descrepsion">
-                            <h5>${member.name}</h5>
-                            <P>${member.role}</P>
-                        </div>
-                        <div class="buttonEdit">
-                            <button type="button" class="btn btn-warning">Edit</button>
-                        </div>
-    `
-    cardLeft.appendChild(memberCardContainer1);
+
+
+
+document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("addBtn")) {
+        const id = e.target.dataset.id;
+        ajouterAuZone(id);
+        dataId = $('#addBtn').attr('data-id');
+    }
+});
+
+
+function ajouterAuZone(id){
+    const membre = membersX.find(m => m.id == id);
+
+    if (!membre){return alert("Membre introuvable !");} 
+    if (membre.id == id)
+        {
+                membersX.forEach(member => {
+                    if(membersX.id == id)
+                memberCardContainer1.remove();
+        });
+        }
+    let zone;
+
+    switch(zoneClicked){
+        case "conferenceRoom":
+            zone = document.getElementById("conferenceRoom");
+            break;
+
+        case "reception":
+            zone = document.getElementById("reception");
+            break;
+
+        case "serviceRoom":
+            zone = document.getElementById("modalServiceRoom");
+            break;
+
+        default:
+            return alert("Sélectionne une zone d'abord !");
+    }
+
+    renderCardZone(membre, zone);
+    alert(jsonMember)
 }
-
-
-function afficherCardMOdal(member,zone){
-    const smallCard = document.createElement("div")
-    smallCard.className = "memberCardContainer1"
-        smallCard.innerHTML = `
-    <div class="imgMember"><img class="imgMemberIn" src="${member.photo}"></div>
-    <div class="descrepsion">
-    <h5>${member.name}</h5>
-    <P>${member.role}</P>
-    </div>
-    <div class="buttonEdit">
-    <button type="button" class="btn btn-success">Add</button>
-    </div>
-    `
-
-zone.appendChild(smallCard);
-    
-}
-function afficherCardMOdalPourChaqueElement(){
-
-}
-afficherCardMOdalPourChaqueElement()
-
-
-
-
-// function ajouterSalle(){
-//         const conferenceRoom = document.getElementById('conferenceRoom');
-//         const smallCard = document.createElement("div");
-//         smallCard.className = "memberCardContainer1"
-//         smallCard.innerHTML = `
-//         <div class="imgMember"><img id="imgMember2" class="imgMemberIn" src="memberimg.webp">
-//                                     </div>
-//                                     <div class="descrepsion">
-//                                         <h6>ALEX</h6>
-//                                         <small>Technicien IT</small>
-//                                     </div>
-//                                     <div class="buttonEdit">
-//                                         x
-//                                     </div>
-    
-//         `
-//     }
-
-
-
 
 function inputBlur(){
     const nomInput = document.querySelector("input[name='nom']");
@@ -201,5 +187,69 @@ function inputBlur(){
         emailAlert.innerHTML = "";
     })
 }
-console.log(membersX)
 inputBlur();
+let zoneClicked = null;
+
+function zoneClick(){
+    document.getElementById("ajouterAuConferenceRoom").addEventListener('click', ()=> zoneClicked = "conferenceRoom");
+    document.getElementById("ajouterAureception").addEventListener('click', ()=> zoneClicked = "reception");
+    document.getElementById("ajouterAuServicesRoom").addEventListener('click', ()=> zoneClicked = "serviceRoom");
+}
+zoneClick();
+
+
+
+// fonction d'affichage
+function renderCardZone(member,zone){
+    const zoneCard = document.createElement("div")
+    zoneCard.className = "memberCardContainer1"
+    zoneCard.innerHTML = `
+        <div class="imgMember"><img class="imgMemberIn" src="${member.photo}"></div>
+        <div class="descrepsion">
+            <h5>${member.name}</h5>
+            <p>${member.role}</p>
+        </div>
+        <div class="buttonEdit">
+            <button class="btn btn-danger removeBtn">x</button>
+        </div>
+    `
+    zone.appendChild(zoneCard);
+
+    zoneCard.querySelector(".removeBtn").addEventListener("click", ()=> zoneCard.remove());
+}
+
+
+function afficherCardMOdal(member,zone){
+    const smallCard = document.createElement("div")
+    smallCard.className = "memberCardContainer1"
+    smallCard.innerHTML = `
+        <div class="imgMember"><img class="imgMemberIn" src="${member.photo}"></div>
+        <div class="descrepsion">
+            <h5>${member.name}</h5>
+            <p>${member.role}</p>
+        </div>
+        <div class="buttonEdit">
+            <button id ="addBtn" class="btn btn-success addBtn" data-id="${member.id}">Add</button>
+        </div>
+    `
+    zone.appendChild(smallCard);
+
+}
+function afficherMemberUnassigned(member) {
+    const cardLeft = document.getElementById("MembersCard")
+    const memberCardContainer1 = document.createElement("div")
+    memberCardContainer1.className = "memberCardContainer1"
+    memberCardContainer1.innerHTML =
+        `
+    <div class="imgMember"><img class="imgMemberIn" src="${member.photo}"></div>
+                        <div class="descrepsion">
+                            <h5>${member.name}</h5>
+                            <P>${member.role}</P>
+                        </div>
+                        <div class="buttonEdit">
+                            <button type="button" class="btn btn-warning">Edit</button>
+                        </div>
+    `
+    cardLeft.appendChild(memberCardContainer1);
+}
+/* =====================*/
