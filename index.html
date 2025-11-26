@@ -124,8 +124,8 @@
 
             <div id=reception class="flex">
 
-            
-          </div>
+
+            </div>
 
             <!-- eeeeeeeeeeeeeeeeeeeeeeee -->
             <!-- Button trigger modal -->
@@ -154,13 +154,17 @@
             </div>
             <!-- eeeeeeeeeeeeeeeeeeeeeeee -->
           </div>
-          
+
         </div>
         <div class="divPlan2"></div>
         <div class="divPlan3">
           <div class="servicesRoom-securityRoom">
             <div class="servicesRoom">
               <p>servicesRoom</p>
+              <div id=servicesRoom class="flex">
+
+
+              </div>
               <!-- eeeeeeeeeeeeeeeeeeeeeeee -->
               <!-- Button trigger modal -->
               <button id="ajouterAuServicesRoom" type="button" class="btn btn-primary" data-bs-toggle="modal"
@@ -190,19 +194,73 @@
             </div>
             <div class="securityRoom">
               <p>securityRoom</p>
-              <button type="button" class="btn btn-primary">+</button>
+              <div id=securityRoom class="flex">
+
+
+              </div>
+              <button id="ajouterAuSecurityRoom" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                data-bs-target="#exampleModalSecurity">+</button>
+              <div class="modal fade" id="exampleModalSecurity" tabindex="-1"
+                aria-labelledby="exampleModalSecurityLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalSecurityLabel">Ajouter au SecurityRoom</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div id="modalSecuretyRoom" class="modal-body">
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div></div>
           <div class="staffRoom-vault">
             <div class="staffRoom">
               <p>staffRoom</p>
-              <button type="button" class="btn btn-primary">+</button>
-
+              <button id="ajouterAuStaffRoom" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                data-bs-target="#exampleModalStaff">+</button>
+              <div class="modal fade" id="exampleModalStaff" tabindex="-1" aria-labelledby="exampleModalStaffLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalStaffLabel">Ajouter au StaffRoom</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div id="modalStaffRoom" class="modal-body">
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="vault">
               <p>vault</p>
-              <button type="button" class="btn btn-primary">+</button>
+              <button id="ajouterAuVault" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                data-bs-target="#exampleModalVault">+</button>
+              <div class="modal fade" id="exampleModalVault" tabindex="-1" aria-labelledby="exampleModalVaultLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalVaultLabel">Ajouter au Vault</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div id="modalVault" class="modal-body">
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
