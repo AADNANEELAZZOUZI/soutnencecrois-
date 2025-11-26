@@ -1,9 +1,11 @@
 [
   {
+    "id" : "1",
     "name": "adnan elazzouzi",
     "role": "technicien IT",
-    "photo": "memberimg.webp",
+    "photo": "member2.png",
     "email": "elazzouziadnan4@gmail.com",
-    "numero": "0777689998"
+    "numero": "0777689998",
+    "currentZone": "sidebar"
   }
 ]
