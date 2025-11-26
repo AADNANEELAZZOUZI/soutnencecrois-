@@ -4,14 +4,15 @@ const modalReception = document.getElementById("modalReception");
 const modalServiceRoom = document.getElementById("modalServiceRoom");
 const modalSecuretyRoom = document.getElementById("modalSecuretyRoom");
 const modalStaffRoom = document.getElementById("modalStaffRoom");
-const modalvault = document.getElementById("modalConfernceRoom");
+const modalVault = document.getElementById("modalVault");
 let conterexperience = 0;
 let contercapacitéReception = 0
-let membersX =[]
+let membersX = []
 let idMember = 1;
-let dataId ;
+let dataId;
 let jsonMember = 0;
 document.getElementById("addExp").addEventListener('click', ajouterExperience)
+
 
 // =================================================
 AjouterMember.addEventListener('click', ajouterMember)
@@ -23,42 +24,52 @@ function ajouterMember() {
     const numero = document.querySelector("input[name='telephone']").value
     let regexemail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     let regexnumerotel = /^\d{10}$/;
-    let regexName =  /^[a-zA-Z]+ [a-zA-Z]{3,19}$/;
-    if(!regexName.test(nom)) {
+    let regexName = /^[a-zA-Z]+ [a-zA-Z]{3,19}$/;
+    if (!regexName.test(nom)) {
         alert("nom invalid")
     }
-    if(!regexemail.test(email)) {
+    if (!regexemail.test(email)) {
         alert("email invalid")
     }
-    if(!regexnumerotel.test(numero)) {
+    if (!regexnumerotel.test(numero)) {
         alert("numero invalid")
     }
-    else{
+    else {
         idMember++
-        const newMember = { id:idMember, name: nom, role: role, photo: photo, email: "HFJBFVBJB@GMOAL.com", numero: "2222222222" };
+        const newMember = { id: idMember, name: nom, role: role, photo: photo, email: "HFJBFVBJB@GMOAL.com", numero: "2222222222", currentZone: "sidebar" };
         membersX.push(newMember);
         afficherMemberUnassigned(newMember);
-        afficherCardMOdal(newMember,modalConferenceRoom);
-        if(newMember.role == "réceptionniste" || newMember.role == "Manager"){
-            afficherCardMOdal(newMember,modalReception);
+        afficherCardMOdal(newMember, modalConferenceRoom);
+        afficherCardMOdal(newMember, modalStaffRoom);
+        afficherCardMOdal(newMember, modalVault);
+        if (newMember.role == "réceptionniste" || newMember.role == "Manager"||newMember.role == "menage") {
+            afficherCardMOdal(newMember, modalReception);
+        }
+        if (newMember.role == "technicien IT" || newMember.role == "Manager"||newMember.role == "menage") {
+            afficherCardMOdal(newMember, modalServiceRoom);
+        }
+        if (newMember.role == "sécurité" || newMember.role == "Manager") {
+            afficherCardMOdal(newMember, modalSecuretyRoom);
         }
     }
-    
+
 }
 async function loadDataJson() {
-    try{
+    try {
         const response = await fetch("data.json")
         const members = await response.json();
-            members.forEach(member => {
+        members.forEach(member => {
+            member.currentZone = "sidebar";
             afficherMemberUnassigned(member);
             membersX.push(member);
         });
-        
-            membersX.forEach(member => {
-                    afficherCardMOdal(member,modalConferenceRoom);
-                });
-            
-    }catch(error){
+
+        membersX.forEach(member => {
+            afficherCardMOdal(member, modalConferenceRoom);
+            afficherCardMOdal(member, modalServiceRoom);
+        });
+
+    } catch (error) {
         console.log("error lors de loading json")
     }
 }
@@ -90,31 +101,54 @@ function ajouterExperience() {
 }
 
 
+function removeFromZone(member) {
+    if (member.currentZone === "sidebar") return;
+
+    const zone = document.getElementById(member.currentZone);
+    const cards = zone.querySelectorAll(".memberCardContainer1");
+
+    cards.forEach(card => {
+        if (card.dataset.id == member.id) {
+            card.remove();
+        }
+    });
+}
+function removeSideBar(id) {
+    const cards = document.querySelectorAll("#MembersCard .memberCardContainer1");
+    cards.forEach(card => {
+        if (card.dataset.id == id) {
+            card.remove();
+        }
+    });
+}
+// function removeSideBar(id) {
+//     const membre = membersX.find(m => m.id == id);
+//     document.querySelectorAll(".memberCardContainer1").forEach(card => {
+//         if (card.dataset.id == id){
+//             card.remove();
+//         }
+//     })
+// }
+
 
 
 document.addEventListener("click", (e) => {
     if (e.target.classList.contains("addBtn")) {
         const id = e.target.dataset.id;
+        removeSideBar(id)
         ajouterAuZone(id);
-        dataId = $('#addBtn').attr('data-id');
     }
 });
 
 
-function ajouterAuZone(id){
+function ajouterAuZone(id) {
     const membre = membersX.find(m => m.id == id);
-
-    if (!membre){return alert("Membre introuvable !");} 
-    if (membre.id == id)
-        {
-                membersX.forEach(member => {
-                    if(membersX.id == id)
-                memberCardContainer1.remove();
-        });
-        }
+    removeSideBar(id);
+    removeFromZone(membre);
+    if (!membre) { return alert("Membre introuvable !"); }
     let zone;
 
-    switch(zoneClicked){
+    switch (zoneClicked) {
         case "conferenceRoom":
             zone = document.getElementById("conferenceRoom");
             break;
@@ -124,7 +158,18 @@ function ajouterAuZone(id){
             break;
 
         case "serviceRoom":
-            zone = document.getElementById("modalServiceRoom");
+            zone = document.getElementById("servicesRoom");
+            break;
+        case "securityRoom":
+            zone = document.querySelector(".securityRoom");
+            break;
+
+        case "staffRoom":
+            zone = document.querySelector(".staffRoom");
+            break;
+
+        case "vault":
+            zone = document.querySelector(".vault");
             break;
 
         default:
@@ -132,10 +177,10 @@ function ajouterAuZone(id){
     }
 
     renderCardZone(membre, zone);
-    alert(jsonMember)
+    membre.currentZone = zoneClicked;
 }
 
-function inputBlur(){
+function inputBlur() {
     const nomInput = document.querySelector("input[name='nom']");
     const roleInput = document.querySelector("input[name='role']");
     const emailInput = document.querySelector("input[name='email']");
@@ -145,44 +190,44 @@ function inputBlur(){
 
 
     nomInput.addEventListener('blur', () => {
-        if(nomInput.value.trim() === ""){
+        if (nomInput.value.trim() === "") {
             nomInput.style.border = "1px solid red";
-            nomAlert.innerHTML = "Input is empty";     
+            nomAlert.innerHTML = "Input is empty";
         }
-        else{
+        else {
             nomInput.style.border = "";
-            nomAlert.innerHTML = "";  
+            nomAlert.innerHTML = "";
         }
     })
-    nomInput.addEventListener('focus' , () => {
+    nomInput.addEventListener('focus', () => {
         nomInput.style.border = "";
         nomAlert.innerHTML = "";
     })
     roleInput.addEventListener('blur', () => {
-        if(roleInput.value.trim() === ""){
+        if (roleInput.value.trim() === "") {
             roleInput.style.border = "1px solid red";
-            roleAlert.innerHTML = "Input is empty";     
+            roleAlert.innerHTML = "Input is empty";
         }
-        else{
+        else {
             roleInput.style.border = "";
-            roleAlert.innerHTML = "";  
+            roleAlert.innerHTML = "";
         }
     })
-    roleInput.addEventListener('focus' , () => {
+    roleInput.addEventListener('focus', () => {
         roleInput.style.border = "";
         roleInput.innerHTML = "";
     })
     emailInput.addEventListener('blur', () => {
-        if(emailInput.value.trim() === ""){
+        if (emailInput.value.trim() === "") {
             emailInput.style.border = "1px solid red";
-            emailAlert.innerHTML = "Input is empty";     
+            emailAlert.innerHTML = "Input is empty";
         }
-        else{
+        else {
             emailInput.style.border = "";
-            emailAlert.innerHTML = "";  
+            emailAlert.innerHTML = "";
         }
     })
-    emailInput.addEventListener('focus' , () => {
+    emailInput.addEventListener('focus', () => {
         emailInput.style.border = "";
         emailAlert.innerHTML = "";
     })
@@ -190,19 +235,25 @@ function inputBlur(){
 inputBlur();
 let zoneClicked = null;
 
-function zoneClick(){
-    document.getElementById("ajouterAuConferenceRoom").addEventListener('click', ()=> zoneClicked = "conferenceRoom");
-    document.getElementById("ajouterAureception").addEventListener('click', ()=> zoneClicked = "reception");
-    document.getElementById("ajouterAuServicesRoom").addEventListener('click', ()=> zoneClicked = "serviceRoom");
+function zoneClick() {
+    document.getElementById("ajouterAuConferenceRoom").addEventListener('click', () => zoneClicked = "conferenceRoom");
+    document.getElementById("ajouterAureception").addEventListener('click', () => zoneClicked = "reception");
+    document.getElementById("ajouterAuServicesRoom").addEventListener('click', () => zoneClicked = "serviceRoom");
+    document.getElementById("ajouterAuSecurityRoom").addEventListener('click', () => zoneClicked = "securityRoom");
+    document.getElementById("ajouterAuStaffRoom").addEventListener('click', () => zoneClicked = "staffRoom");
+    document.getElementById("ajouterAuVault").addEventListener('click', () => zoneClicked = "vault");
+
 }
 zoneClick();
 
+//fonction remove 
 
 
 // fonction d'affichage
-function renderCardZone(member,zone){
+function renderCardZone(member, zone) {
     const zoneCard = document.createElement("div")
     zoneCard.className = "memberCardContainer1"
+    zoneCard.dataset.id = member.id;
     zoneCard.innerHTML = `
         <div class="imgMember"><img class="imgMemberIn" src="${member.photo}"></div>
         <div class="descrepsion">
@@ -215,11 +266,15 @@ function renderCardZone(member,zone){
     `
     zone.appendChild(zoneCard);
 
-    zoneCard.querySelector(".removeBtn").addEventListener("click", ()=> zoneCard.remove());
+    zoneCard.querySelector(".removeBtn").addEventListener("click", () => {
+        zoneCard.remove();
+        member.currentZone = "sidebar";
+        afficherMemberUnassigned(member);
+    });
 }
 
 
-function afficherCardMOdal(member,zone){
+function afficherCardMOdal(member, zone) {
     const smallCard = document.createElement("div")
     smallCard.className = "memberCardContainer1"
     smallCard.innerHTML = `
@@ -239,6 +294,7 @@ function afficherMemberUnassigned(member) {
     const cardLeft = document.getElementById("MembersCard")
     const memberCardContainer1 = document.createElement("div")
     memberCardContainer1.className = "memberCardContainer1"
+    memberCardContainer1.dataset.id = member.id;
     memberCardContainer1.innerHTML =
         `
     <div class="imgMember"><img class="imgMemberIn" src="${member.photo}"></div>
